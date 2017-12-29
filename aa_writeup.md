@@ -16,6 +16,15 @@ An IoU is a measure of the average_IoU*(n_true_positive/(n_true_positive+n_false
 
 ### Architecture ###
 
+The model has to be able to segment out objects within a live video stream which means that every pixels in the still frame image needs to have a label. Semantic Segmentation is a technique used with a Fully Convolutional Network to achieve this result. At the end of the process every pixel will be colored in one of the segmentation colors.
+
+#### Encoder ####
+Convnets learn from local 2D windows of information to get small patterns on the inputs. These patterns are translation independent. Once it learns a pattern it can recognize it anywhere. They can also learn spatial hierarchies of patterns as well. One layer can learn edges, the next can learn larger patterns built from the first layer and so on. In this way convnets can efficiently increasingly learn more complex visual concepts. They operate over 3D Tensors which are called feature maps with height, width and depth (HxWxD). Depth is also called a Channel Axis. For RGB images the Depth channel is 3 for Red, Green and Blue.
+
+A conovution works by sliding a window of size 3x3, 5x5, etc. over the 3D feature map, stopping at each location and extracting features (HxWxD). Each window is transformed via a tensor into a 1D vector of shape(output_depth).
+
+Spatial Convolution followed by a Depthwise Convolution
+
 
 To interface your neural net with the QuadSim simulator, you must use a version QuadSim that has been custom tailored for this project. The previous version that you might have used for the Controls lab will not work.
 

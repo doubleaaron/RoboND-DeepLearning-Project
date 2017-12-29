@@ -14,7 +14,7 @@ Here's a video of what the final Target tracking looks like with the model I bui
 
 An IoU is a measure of the average_IoU*(n_true_positive/(n_true_positive+n_false_positive+n_false_negative))
 
-###Architecture###
+### Architecture ###
 
 
 To interface your neural net with the QuadSim simulator, you must use a version QuadSim that has been custom tailored for this project. The previous version that you might have used for the Controls lab will not work.

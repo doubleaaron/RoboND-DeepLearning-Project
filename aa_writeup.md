@@ -2,32 +2,20 @@
 
 ## Deep Learning Project ##
 
-The Udacity Robotics Software Engineer Nanodegree Deep Learning Project is also known as the Follow Me Quadcopter Drone Project. It utilizes a Fully Connected Convolutional Neural Network (FCN) in Tensorflow and Keras to build a model that identifies, targets and tracks a person from a Simulation Drone Camera feed built in Unity3D. The simulated Drone must follow the acquired Target person while ignoring other people that are randomly spawned around the Target person.
-
-Here's a video of what the final Target tracking looks like with the model I built at and IoU of 42%
-
-[![Follow Me!](https://img.youtube.com/vi/LM8i6oglozw/0.jpg)](https://www.youtube.com/watch?v=LM8i6oglozw)
-
 [image_0]: ./docs/misc/sim_screenshot.png
 ![alt text][image_0] 
 
-## Setup Instructions
-**Clone the repository**
-```
-$ git clone https://github.com/udacity/RoboND-DeepLearning.git
-```
 
-**Download the data**
+The Udacity Robotics Software Engineer Nanodegree Deep Learning Project is also known as the Follow Me Quadcopter Drone Project. It utilizes a Fully Connected Convolutional Neural Network (FCN) in Tensorflow and Keras to build a model that identifies, targets and tracks a person from a Simulation Drone Camera feed built in Unity3D. The simulated Drone must acquire and follow a target person while ignoring other people that are randomly spawned around the target person.
 
-Save the following three files into the data folder of the cloned repository. 
+Here's a video of what the final Target tracking looks like with the model I built at an average IoU of 42%.
 
-[Training Data](https://s3-us-west-1.amazonaws.com/udacity-robotics/Deep+Learning+Data/Lab/train.zip) 
+[![Follow Me!](https://img.youtube.com/vi/LM8i6oglozw/0.jpg)](https://www.youtube.com/watch?v=LM8i6oglozw)
 
-[Validation Data](https://s3-us-west-1.amazonaws.com/udacity-robotics/Deep+Learning+Data/Lab/validation.zip)
+An IoU is a measure of the average_IoU*(n_true_positive/(n_true_positive+n_false_positive+n_false_negative))
 
-[Sample Evaluation Data](https://s3-us-west-1.amazonaws.com/udacity-robotics/Deep+Learning+Data/Project/sample_evaluation_data.zip)
+**Architecture**
 
-**Download the QuadSim binary**
 
 To interface your neural net with the QuadSim simulator, you must use a version QuadSim that has been custom tailored for this project. The previous version that you might have used for the Controls lab will not work.
 

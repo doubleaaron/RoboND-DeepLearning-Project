@@ -2,7 +2,11 @@
 
 ## Deep Learning Project ##
 
-In this project, you will train a deep neural network to identify and track a target in simulation. So-called “follow me” applications like this are key to many fields of robotics and the very same techniques you apply here could be extended to scenarios like advanced cruise control in autonomous vehicles or human-robot collaboration in industry.
+The Udacity Robotics Software Engineer Nanodegree Deep Learning Project is also known as the Follow Me Quadcopter Drone Project. It utilizes a Fully Connected Convolutional Neural Network (FCN) in Tensorflow and Keras to build a model that identifies, targets and tracks a person from a Simulation Drone Camera feed built in Unity3D. The simulated Drone must follow the acquired Target person while ignoring other people that are randomly spawned around the Target person.
+
+Here's a video of what the final Target tracking looks like with the model I built at and IoU of 42%
+
+https://youtu.be/LM8i6oglozw
 
 [image_0]: ./docs/misc/sim_screenshot.png
 ![alt text][image_0] 

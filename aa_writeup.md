@@ -8,6 +8,8 @@ Here's a video of what the final Target tracking looks like with the model I bui
 
 https://youtu.be/LM8i6oglozw
 
+[![Follow Me!](https://img.youtube.com/vi/LM8i6oglozw/0.jpg)](https://www.youtube.com/watch?v=LM8i6oglozw)
+
 [image_0]: ./docs/misc/sim_screenshot.png
 ![alt text][image_0] 
 

@@ -16,7 +16,7 @@ A video of what the final Target tracking looks like with the model is below. It
 
 The model has to be able to segment out objects within a live video stream which means that every pixels in the still frame image needs to have a label. Semantic Segmentation is a technique used with a Fully Convolutional Network to achieve this result. At the end of the process every pixel will be colored in one of the segmentation colors.
 
-[image_5]: ./images/FCN.jpg
+[image_5]: ./images/FCN.png
 ![alt text][image_5]
 Image Credit: http://cvlab.postech.ac.kr/research/deconvnet/
 

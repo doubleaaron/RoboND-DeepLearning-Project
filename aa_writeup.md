@@ -16,9 +16,11 @@ A video of what the final Target tracking looks like with the model is below. It
 
 The model has to be able to segment out objects within a live video stream which means that every pixels in the still frame image needs to have a label. Semantic Segmentation is a technique used with a Fully Convolutional Network to achieve this result. At the end of the process every pixel will be colored in one of the segmentation colors.
 
+
 [image_5]: ./images/FCN.png
 ![alt text][image_5]
 Image Credit: http://cvlab.postech.ac.kr/research/deconvnet/
+
 
 #### Encoder ####
 Convnets learn from local 2D windows of information to get small patterns on the inputs. These patterns are translation independent. Once it learns a pattern it can recognize it anywhere. They can also learn spatial hierarchies of patterns as well. One layer can learn edges, the next can learn larger patterns built from the first layer and so on. In this way convnets can increasingly learn more complex visual concepts. They operate over 3D Tensors which are called feature maps with height, width and depth (HxWxD). Depth is also called a Channel Axis. For RGB images the Depth channel is 3 for Red, Green and Blue.
@@ -48,6 +50,48 @@ workers = 2
 
 [image_4]: ./images/sem_seg_epochs_03.jpg
 ![alt text][image_4]
+
+
+### Prediction ###
+
+Once the model is trained it's time to make Predictions. There are three types of images available from the validation set:
+
+patrol_with_targ: Test how well the network can detect the hero from a distance.
+patrol_non_targ: Test how often the network makes a mistake and identifies the wrong person as the target.
+following_images: Test how well the network can identify the target while following them.
+
+#### following_images ####
+
+[image_6]: ./images/following_01.jpg
+![alt text][image_6]
+
+[image_7]: ./images/following_02.jpg
+![alt text][image_7]
+
+[image_8]: ./images/following_03.jpg
+![alt text][image_8]
+
+#### patrol_with_targ ####
+
+[image_9]: ./images/following_withtarget_01.jpg
+![alt text][image_9]
+
+[image_10]: ./images/following_withtarget_02.jpg
+![alt text][image_10]
+
+[image_11]: ./images/following_withtarget_03.jpg
+![alt text][image_11]
+
+#### patrol_non_targ ####
+
+[image_12]: ./images/following_notarget_01.jpg
+![alt text][image_12]
+
+[image_13]: ./images/following_notarget_02.jpg
+![alt text][image_13]
+
+[image_14]: ./images/following_notarget_03.jpg
+![alt text][image_14]
 
 
 ------------UDACITY STUFF BELOW DELETE-------------------

@@ -23,6 +23,18 @@ A convolution works by sliding a window of size 3x3, 5x5, etc. over the 3D featu
 
 Spatial Convolution followed by a Depthwise Convolution
 
+[image_2]: ./images/sem_seg_epochs_01.jpg
+![alt text][image_2]
+
+[image_3]: ./images/sem_seg_epochs_02.jpg
+![alt text][image_3]
+
+[image_4]: ./images/sem_seg_epochs_03.jpg
+![alt text][image_4]
+
+
+------------UDACITY STUFF BELOW DELETE-------------------
+
 To interface your neural net with the QuadSim simulator, you must use a version QuadSim that has been custom tailored for this project. The previous version that you might have used for the Controls lab will not work.
 
 The simulator binary can be downloaded [here](https://github.com/udacity/RoboND-DeepLearning/releases/latest)

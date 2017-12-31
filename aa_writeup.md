@@ -23,6 +23,8 @@ A convolution works by sliding a window of size 3x3, 5x5, etc. over the 3D featu
 
 Spatial Convolution followed by a Depthwise Convolution
 
+I trained my FCN locally with tensorflow-gpu on a Quadro M1200
+
 [image_2]: ./images/sem_seg_epochs_01.jpg
 ![alt text][image_2]
 

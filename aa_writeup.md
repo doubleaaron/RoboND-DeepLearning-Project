@@ -31,12 +31,14 @@ I trained my FCN locally with tensorflow-gpu on a Quadro M1200 and the speed wer
 
 Here are my training epochs from these Hyperparameters:
 
+```python
 learning_rate = 0.005
 batch_size = 30
 num_epochs = 10
 steps_per_epoch = 200
 validation_steps = 50
 workers = 2
+```
 
 [image_2]: ./images/sem_seg_epochs_01.jpg
 ![alt text][image_2]

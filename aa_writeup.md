@@ -12,6 +12,9 @@ A video of what the final Target tracking looks like with the model is below. It
 
 [![Follow Me!](https://img.youtube.com/vi/LM8i6oglozw/0.jpg)](https://www.youtube.com/watch?v=LM8i6oglozw)
 
+[image_0]: ./images/youtube_screen..jpg
+![alt text][image_0] 
+
 ### Architecture ###
 
 The model has to be able to segment out objects within a live video stream which means that every pixels in the still frame image needs to have a label. Semantic Segmentation is a technique used with a Fully Convolutional Network to achieve this result. At the end of the process every pixel will be colored in one of the segmentation colors.

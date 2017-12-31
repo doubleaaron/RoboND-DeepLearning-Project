@@ -12,7 +12,7 @@ A video of what the final Target tracking looks like with the model is below. It
 
 [![Follow Me!](https://img.youtube.com/vi/LM8i6oglozw/0.jpg)](https://www.youtube.com/watch?v=LM8i6oglozw)
 
-[image_1]: ./images/youtube_screen..jpg
+[image_1]: ./images/youtube_screen.jpg
 ![alt text][image_1] 
 
 ### Architecture ###

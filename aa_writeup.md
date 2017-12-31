@@ -62,35 +62,35 @@ following_images: Test how well the network can identify the target while follow
 
 #### following_images ####
 
-[image_6]: ./images/following_01.jpg
+[image_6]: ./images/following_01.png
 ![alt text][image_6]
 
-[image_7]: ./images/following_02.jpg
+[image_7]: ./images/following_02.png
 ![alt text][image_7]
 
-[image_8]: ./images/following_03.jpg
+[image_8]: ./images/following_03.png
 ![alt text][image_8]
 
 #### patrol_with_targ ####
 
-[image_9]: ./images/following_withtarget_01.jpg
+[image_9]: ./images/following_withtarget_01.png
 ![alt text][image_9]
 
-[image_10]: ./images/following_withtarget_02.jpg
+[image_10]: ./images/following_withtarget_02.png
 ![alt text][image_10]
 
-[image_11]: ./images/following_withtarget_03.jpg
+[image_11]: ./images/following_withtarget_03.png
 ![alt text][image_11]
 
 #### patrol_non_targ ####
 
-[image_12]: ./images/following_notarget_01.jpg
+[image_12]: ./images/following_notarget_01.png
 ![alt text][image_12]
 
-[image_13]: ./images/following_notarget_02.jpg
+[image_13]: ./images/following_notarget_02.png
 ![alt text][image_13]
 
-[image_14]: ./images/following_notarget_03.jpg
+[image_14]: ./images/following_notarget_03.png
 ![alt text][image_14]
 
 

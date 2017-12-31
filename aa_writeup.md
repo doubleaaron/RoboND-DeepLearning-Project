@@ -16,14 +16,27 @@ A video of what the final Target tracking looks like with the model is below. It
 
 The model has to be able to segment out objects within a live video stream which means that every pixels in the still frame image needs to have a label. Semantic Segmentation is a technique used with a Fully Convolutional Network to achieve this result. At the end of the process every pixel will be colored in one of the segmentation colors.
 
+[image_5]: ./images/FCN.jpg
+![alt text][image_5]
+Image Credit: http://cvlab.postech.ac.kr/research/deconvnet/
+
 #### Encoder ####
 Convnets learn from local 2D windows of information to get small patterns on the inputs. These patterns are translation independent. Once it learns a pattern it can recognize it anywhere. They can also learn spatial hierarchies of patterns as well. One layer can learn edges, the next can learn larger patterns built from the first layer and so on. In this way convnets can increasingly learn more complex visual concepts. They operate over 3D Tensors which are called feature maps with height, width and depth (HxWxD). Depth is also called a Channel Axis. For RGB images the Depth channel is 3 for Red, Green and Blue.
 
 A convolution works by sliding a window of size 3x3, 5x5, etc. over the 3D feature map, stopping at each location and extracting features (HxWxD). Each window is transformed via a tensor into a 1D vector of shape(output_depth).
 
-Spatial Convolution followed by a Depthwise Convolution
+This Encoding is then followed by a decoding process that is a transposed encoding process (or deconvolution) with an upsampling process. This is also called a fractionally strided convolution. This operation goes in the opposite direction to a convolution and translates the activations into meaningful information that scales up the activation to the same image size.
 
-I trained my FCN locally with tensorflow-gpu on a Quadro M1200
+I trained my FCN locally with tensorflow-gpu on a Quadro M1200 and the speed were adequate enough to get an acceptable result without going to the AWS instance with Tesla K80. It required the batch size to not be too high and get an out of memory error but still yieled an acceptable result. When I have more time I will try to get a higher final result and IoU with a faster workstation.
+
+Here are my training epochs from these Hyperparameters:
+
+learning_rate = 0.005
+batch_size = 30
+num_epochs = 10
+steps_per_epoch = 200
+validation_steps = 50
+workers = 2
 
 [image_2]: ./images/sem_seg_epochs_01.jpg
 ![alt text][image_2]

@@ -56,9 +56,11 @@ workers = 2
 
 Once the model is trained it's time to make Predictions. There are three types of images available from the validation set:
 
+```
 patrol_with_targ: Test how well the network can detect the hero from a distance.
 patrol_non_targ: Test how often the network makes a mistake and identifies the wrong person as the target.
 following_images: Test how well the network can identify the target while following them.
+```
 
 #### following_images ####
 

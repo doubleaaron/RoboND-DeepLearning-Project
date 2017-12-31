@@ -10,7 +10,7 @@ The Udacity Robotics Software Engineer Nanodegree :: Deep Learning Project is a 
 
 A video of what the final Target tracking looks like with the model is below. It has an average IoU of 42%.
 
-[![Follow Me!](https://img.youtube.com/vi/LM8i6oglozw/0.jpg)](https://www.youtube.com/watch?v=LM8i6oglozw)
+[![Follow Me!](./images/youtube_screen.jpg)](https://www.youtube.com/watch?v=LM8i6oglozw)
 
 [image_1]: ./images/youtube_screen.jpg
 ![alt text][image_1] 

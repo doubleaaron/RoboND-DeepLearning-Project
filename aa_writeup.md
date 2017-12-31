@@ -8,9 +8,9 @@
 
 The Udacity Robotics Software Engineer Nanodegree Deep Learning Project is also known as the Follow Me Quadcopter Drone Project. It utilizes a Fully Connected Convolutional Neural Network (FCN) in Tensorflow and Keras to build a model that identifies, targets and tracks a person from a Simulation Drone Camera feed built in Unity3D. The simulated Drone must acquire and follow a target person while ignoring other people that are randomly spawned around the target person.
 
-Here's a video of what the final Target tracking looks like with the model I built at an average IoU of 42%.
+A video of what the final Target tracking looks like with the model I built at an average IoU of 42%.
 
-[![Follow Me!](https://img.youtube.com/vi/LM8i6oglozw/0.jpg)](https://www.youtube.com/watch?v=LM8i6oglozw)
+![Follow Me!(https://img.youtube.com/vi/LM8i6oglozw/0.jpg)](https://www.youtube.com/watch?v=LM8i6oglozw)
 
 An IoU is a measure of the average_IoU*(n_true_positive/(n_true_positive+n_false_positive+n_false_negative))
 

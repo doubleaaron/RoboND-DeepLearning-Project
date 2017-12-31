@@ -104,7 +104,7 @@ following_images: Test how well the network can identify the target while follow
 
 ### Evaluation ###
 
-The final score of my model was #### 0.424 ####, and the final IoU without the target was 0.550.
+The final score of my model was 0.424, and the final IoU without the target was 0.550.
 
 [image_15]: ./images/evaluation.jpg
 ![alt text][image_15]

@@ -6,25 +6,22 @@
 ![alt text][image_0] 
 
 
-The Udacity Robotics Software Engineer Nanodegree Deep Learning Project is also known as the Follow Me Quadcopter Drone Project. It utilizes a Fully Connected Convolutional Neural Network (FCN) in Tensorflow and Keras to build a model that identifies, targets and tracks a person from a Simulation Drone Camera feed built in Unity3D. The simulated Drone must acquire and follow a target person while ignoring other people that are randomly spawned around the target person.
+The Udacity Robotics Software Engineer Nanodegree :: Deep Learning Project is a Follow Me Quadcopter Drone Project. It utilizes a Fully Connected Convolutional Neural Network (FCN) in Tensorflow and Keras to build a model that identifies, targets and tracks a person from a Simulation Drone Camera feed built in Unity3D. The simulated Drone must acquire and follow a target person while ignoring other people that are randomly spawned around the target person.
 
-A video of what the final Target tracking looks like with the model I built at an average IoU of 42%.
+A video of what the final Target tracking looks like with the model is below. It has an average IoU of 42%.
 
-![Follow Me!(https://img.youtube.com/vi/LM8i6oglozw/0.jpg)](https://www.youtube.com/watch?v=LM8i6oglozw)
-
-An IoU is a measure of the average_IoU*(n_true_positive/(n_true_positive+n_false_positive+n_false_negative))
+[![Follow Me!](https://img.youtube.com/vi/LM8i6oglozw/0.jpg)](https://www.youtube.com/watch?v=LM8i6oglozw)
 
 ### Architecture ###
 
 The model has to be able to segment out objects within a live video stream which means that every pixels in the still frame image needs to have a label. Semantic Segmentation is a technique used with a Fully Convolutional Network to achieve this result. At the end of the process every pixel will be colored in one of the segmentation colors.
 
 #### Encoder ####
-Convnets learn from local 2D windows of information to get small patterns on the inputs. These patterns are translation independent. Once it learns a pattern it can recognize it anywhere. They can also learn spatial hierarchies of patterns as well. One layer can learn edges, the next can learn larger patterns built from the first layer and so on. In this way convnets can efficiently increasingly learn more complex visual concepts. They operate over 3D Tensors which are called feature maps with height, width and depth (HxWxD). Depth is also called a Channel Axis. For RGB images the Depth channel is 3 for Red, Green and Blue.
+Convnets learn from local 2D windows of information to get small patterns on the inputs. These patterns are translation independent. Once it learns a pattern it can recognize it anywhere. They can also learn spatial hierarchies of patterns as well. One layer can learn edges, the next can learn larger patterns built from the first layer and so on. In this way convnets can increasingly learn more complex visual concepts. They operate over 3D Tensors which are called feature maps with height, width and depth (HxWxD). Depth is also called a Channel Axis. For RGB images the Depth channel is 3 for Red, Green and Blue.
 
-A conovution works by sliding a window of size 3x3, 5x5, etc. over the 3D feature map, stopping at each location and extracting features (HxWxD). Each window is transformed via a tensor into a 1D vector of shape(output_depth).
+A convolution works by sliding a window of size 3x3, 5x5, etc. over the 3D feature map, stopping at each location and extracting features (HxWxD). Each window is transformed via a tensor into a 1D vector of shape(output_depth).
 
 Spatial Convolution followed by a Depthwise Convolution
-
 
 To interface your neural net with the QuadSim simulator, you must use a version QuadSim that has been custom tailored for this project. The previous version that you might have used for the Controls lab will not work.
 

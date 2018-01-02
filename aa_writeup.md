@@ -17,18 +17,28 @@ Below is a video of how the final target tracking runs in the QuadSim simulator.
 The model has to be able to segment out objects within a live video stream which means that every pixel in the still frame image needs to have a label. Semantic Segmentation is a technique used with a Fully Convolutional Network to achieve this result. At the end of the process every pixel will be colored in one of the segmentation colors.
 
 
+[image_17]: ./images/cnn_architecture.jpg
+![alt text][image_17]
+
+#### Convolutional Neural Network ####
+Connvolutional Neural Networks (CNN) are widely used and perform very well in imaging applications due to the way that they mimic the human visual perception system and the visual cortex. Local regions of information are extracted from imagery by stacking feature extraction layers which detect higher and higher level information from an image. Edges, curves, shapes, etc. Traditional CNNs perform very well for Image Classification but due to the Fully Connected Layers placed at the end of the network aren't very good at positional information of the objects detected in the images. Spatial information required to locate objects is removed.
+
+
 [image_5]: ./images/FCN.png
 ![alt text][image_5]
 Image Credit: http://cvlab.postech.ac.kr/research/deconvnet/
 
+#### Fully Convolutional Network ####
+
+**1x1 convolutional layers:**
+
+In order to preserve spatial information, the Fully Connected Layers in a CNN can be replaced with 1x1 Convolution Layers. Low dimensional embeddings (1x1 convolutions) can contain quite a bit of information about a larger image. There are also advantages to 1x1 convolution layers like being able to feed images of any size into the network as well as increasing or decreasing the complexity in the filter space. In particular here they can reduce the dimensionality in the filter dimension while retaining the spatial information.
+
+A disadvantage of 1x1 layers is that they can be computationally slower than Fully Connected layers, so we need to keep that in mind as well.
+
+**Encoding**
 
 
-#### Encoder | Decoder | 1x1 Convolutional Layer | Skip Connection ####
-Convnets learn from local 2D windows of information to get small patterns on the inputs. These patterns are translation independent. Once it learns a pattern it can recognize it anywhere. They can also learn spatial hierarchies of patterns as well. One layer can learn edges, the next can learn larger patterns built from the first layer and so on. In this way convnets can increasingly learn more complex visual concepts. They operate over 3D Tensors which are called feature maps with height, width and depth (HxWxD). Depth is also called a Channel Axis. For RGB images the Depth channel is 3 for Red, Green and Blue.
-
-A convolution works by sliding a window of size 3x3, 5x5, etc. over the 3D feature map, stopping at each location and extracting features (HxWxD). This can be quite expensive so a 1x1 convolution and Skip Connection are utilized as a method of dimensionality reduction. Each window is transformed via a tensor into a 1D vector of shape(output_depth). This dimensionality reduction is in the filter dimension and not the spatial dimension. Embeddings of a low dimension like 1x1 can contain quite alot of information about an image patch of size 3x3 or 5x5. This is the Google Inception architecture highlighted in the document located at https://arxiv.org/abs/1409.4842
-
-**Encoder:** For this FCN the encoder is a series of feature extraction convolutional layers like VGG or ResNet. It extracts features from the input images.
 
 **Decoder:** The decoding process is a transposed encoding process (or deconvolution) with an upsampling process. This is also called a fractionally strided convolution. This operation goes in the opposite direction to a convolution and translates the activations into meaningful information that scales up the activation to the same image size. This results in a pixel by pixel segmentation of the original input image.
 

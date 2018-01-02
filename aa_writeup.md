@@ -27,7 +27,28 @@ Convnets learn from local 2D windows of information to get small patterns on the
 
 A convolution works by sliding a window of size 3x3, 5x5, etc. over the 3D feature map, stopping at each location and extracting features (HxWxD). Each window is transformed via a tensor into a 1D vector of shape(output_depth).
 
-This Encoding is then followed by a decoding process that is a transposed encoding process (or deconvolution) with an upsampling process. This is also called a fractionally strided convolution. This operation goes in the opposite direction to a convolution and translates the activations into meaningful information that scales up the activation to the same image size.
+Encoder: For this FCN the encoder is a series of feature extraction convolutional layers like VGG or ResNet. It extracts features from the input images.
+
+Decoder: The decoding process is a transposed encoding process (or deconvolution) with an upsampling process. This is also called a fractionally strided convolution. This operation goes in the opposite direction to a convolution and translates the activations into meaningful information that scales up the activation to the same image size. This results in a pixel by pixel segmentation of the original input image.
+
+1x1 convolutional layers: This technique within the FCN allows the network to multiply the sums of the encoder convolution and contain it's spatial information.
+
+Skip Connection: This works via a connection in one layer of the encoder to another layer of the decoder, which allows the decoder to use information from multiple resolutions.
+
+The network has the following layers:
+
+  Input layer (Channels = 3 (RGB))
+
+  3 Encoder layers (Channels = 32, 64, 128)
+
+  1x1 Convolution layer (Channels = 256)
+
+  3 Decoder layers (Channels = 128,64,32)
+
+  Output layer (Channels = 3 (Target, Human, Background))
+
+
+#### Training ####
 
 I trained my FCN locally with tensorflow-gpu on a Quadro M1200 and the speed were adequate enough to get an acceptable result without going to the AWS instance with Tesla K80. It required the batch size to not be too high and get an out of memory error but still yieled an acceptable result. When I have more time I will try to get a higher final result and IoU with a faster workstation.
 

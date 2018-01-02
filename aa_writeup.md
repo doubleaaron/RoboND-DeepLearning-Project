@@ -6,7 +6,7 @@
 ![alt text][image_0] 
 
 
-The Udacity Robotics Software Engineer Nanodegree :: Deep Learning Project is a Follow Me Quadcopter Drone Project. It utilizes a Fully Connected Convolutional Neural Network (FCN) in Tensorflow and Keras to build a model that identifies, targets and tracks a person from a Simulation Drone Camera feed built in Unity3D. The simulated Drone must acquire and follow a target person while ignoring other people that are randomly spawned around the target person.
+The Udacity Robotics Software Engineer Nanodegree Deep Learning Project utilizes a Fully Convolutional Network (FCN) in Tensorflow and Keras to build a model that identifies, targets and tracks a person from a Simulation Drone Camera feed built in Unity3D. The simulated Drone must acquire and follow a target person while ignoring other people that are randomly spawned around the target person.
 
 Below is a video of how the final target tracking runs in the QuadSim simulator. It has an average IoU of 42%.
 

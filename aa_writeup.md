@@ -37,15 +37,15 @@ A convolution works by sliding a window of size 3x3, 5x5, etc. over the 3D featu
 
 **The network has the following layers:**
 
-  +Input layer (Channels = 3 (RGB))
+  ..*Input layer (Channels = 3 (RGB))
 
-  +3 Encoder layers (Channels = 32, 64, 128)
+  ..*3 Encoder layers (Channels = 32, 64, 128)
 
-  +1x1 Convolution layer (Channels = 256)
+  ..*1x1 Convolution layer (Channels = 256)
 
-  +3 Decoder layers (Channels = 128,64,32)
+  ..*3 Decoder layers (Channels = 128,64,32)
 
-  +Output layer (Channels = 3 (Target, Human, Background))
+  ..*Output layer (Channels = 3 (Target, Human, Background))
 
 
 #### Training ####

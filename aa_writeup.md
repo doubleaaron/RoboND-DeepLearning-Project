@@ -226,7 +226,8 @@ The final score of my model was 0.424, and the final IoU without the target was 
 [image_15]: ./images/evaluation.jpg
 ![alt text][image_15]
 
-The student is able to clearly articulate whether this model and data would work well for following another object (dog, cat, car, etc.) instead of a human and if not, what changes would be required.
+
+### Will It Work on Other Objects? ###
 
 This Model could be used as a framework for following other shapes such as cats, dogs, vehicles, etc. but that would require a large dataset of labeled images specific to other shapes to provide the model with sufficient training and validation information. I like to think of the Model as a feature extraction and segmentation engine that requires enough really good data to be useful. Garbage in = Garbage out.
 

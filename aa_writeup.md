@@ -40,11 +40,9 @@ A disadvantage of 1x1 layers is that they can be computationally slower than Ful
 
 Like typical CNNs reducing the height and width with each added convolution layer with a stride larger than 1 extracts higher and higher level information from an image while the depth of the output is also increased so we don't lose information. This is where the 1x1 convolutional layers retain some spatial information that we can use in predictions.
 
-In order to classify pixels of images, we decode the eoncoded information using decoder blocks. Within the decoder blocks, we restore the spatial size using Bilinear Upsampling. We also use Skip Connections with lower level information from prior layers that improves accuracy. Convolution layers in the decoder blocks can also extract information from prior layers.
-
 **Decoding**
 
-The decoding process is a transposed encoding process (or deconvolution) with an upsampling process. This is also called a fractionally strided convolution. This operation goes in the opposite direction to a convolution and translates the activations into meaningful information that scales up the activation to the same image size. This results in a pixel by pixel segmentation of the original input image.
+The decoding process is a transposed encoding process (or deconvolution) with an upsampling process. This operation goes in the opposite direction to a convolution and translates the activations into meaningful information that scales up the activation to the same image size. This results in a pixel by pixel segmentation of the original input image. Within the decoder blocks, we restore the spatial size using Bilinear Upsampling. We also use Skip Connections with lower level information from prior layers that improves accuracy. Convolution layers in the decoder blocks can also extract information from prior layers.
 
 **Bilinear Upsampling**
 
@@ -54,17 +52,87 @@ Bilinear Upsampling allows us to predict pixel image probability from spatial in
 
 Skip Connections are a powerful tool in our arsenal that combines the high-level and low-level information to make spatial predictions more accurate. Prior layers with the same height and width are Concatenated and a Convolution is performed.
 
-**Batch Normalization**
+**Separable Convolutions and Batch Normalization**
 
 The input batch of each layer is optimized by normalization using the provided functions **separable_conv2d_batchnorm** as a separable dimensional convolution with ReLU activation and **conv2d_batchnorm** as a normal 2d convolution with ReLU activation. This allows convergence more quickly by helping Gradient Descent. The Depthwise Separable Convolution layers perform convolution on each of the input channels followed by a 1x1 convolution on the result. Reducing parameters improves performance and also reduces overfitting.
 
+**Building the Model**
+
+The steps to build the model are:
+
+ * Create an Encoder block
+ * Create a Decoder block
+ * Build the FCN of Encoder blocks, 1x1 convolution and Decoder blocks
+ 
+The Encoder block is a separable convolution layer using the ```separable_conv2d_batchnorm()``` function
+
+```python
+def encoder_block(input_layer, filters, strides):
+    
+    # TODO Create a separable convolution layer using the separable_conv2d_batchnorm() function.
+    output_layer = separable_conv2d_batchnorm(input_layer, filters, strides)
+    
+    return output_layer
+```
+
+The Decoder block has 3 parts:
+
+ * A bilinear upsampling layer using the ```upsample_bilinear()``` function
+ * Layer concatenation
+ * Several separable convolution layers to extract more spatial information from prior layers
+
+```python
+def decoder_block(small_ip_layer, large_ip_layer, filters):
+    
+    # TODO Upsample the small input layer using the bilinear_upsample() function.
+    output_layer = bilinear_upsample(small_ip_layer)
+    
+    # TODO Concatenate the upsampled and large input layers using layers.concatenate
+    output_layer = layers.concatenate([output_layer, large_ip_layer])
+    
+    # TODO Add some number of separable convolution layers
+    output_layer = separable_conv2d_batchnorm(output_layer, filters)
+    output_layer = separable_conv2d_batchnorm(output_layer, filters)
+    output_layer = separable_conv2d_batchnorm(output_layer, filters)
+    
+    return output_layer
+```
+
+**The FCN Model**
+
+There are 3 steps in building the FCN Model:
+
+ * Encoder block to build the encoder layers
+ * 1x1 Convolutional layer using the ```conv2d_batchnorm()``` function with kernel size and stride of 1
+ * Same number of encoder and decoder blocks to recreate the original image size
+
+```python
+def fcn_model(inputs, num_classes):
+    
+    # TODO Add Encoder Blocks. 
+    # Remember that with each encoder layer, the depth of your model (the number of filters) increases.
+    encoder1 = encoder_block(inputs, filters=32, strides=2)
+    encoder2 = encoder_block(encoder1, filters=64, strides=2)
+    encoder3 = encoder_block(encoder2, filters=64, strides=2)
+    
+    # TODO Add 1x1 Convolution layer using conv2d_batchnorm().
+    conv1 = conv2d_batchnorm(encoder3, filters=64)
+    
+    # TODO: Add the same number of Decoder Blocks as the number of Encoder Blocks
+    decoder1 = decoder_block(conv1, encoder2, filters=64)
+    decoder2 = decoder_block(decoder1, encoder1, filters=64)
+    x = decoder_block(decoder2, inputs, filters=32)
+    
+    # The function returns the output layer of your model. "x" is the final layer obtained from the last decoder_block()
+    return layers.Conv2D(num_classes, 1, activation='softmax', padding='same')(x)
+```
 **The network has the following layers:**
 
  * Input layer (Channels = 3 (RGB))
  * 3 Encoder layers (Channels = 32, 64, 128)
  * 1x1 Convolution layer (Channels = 256)
  * 3 Decoder layers (Channels = 128,64,32)
- * Output layer (Channels = 3 (Target, Human, Background))
+ * Output layer (Channels = 3 (Hero, Human, Background))
 
 Below is the keras model from plot_model(model, to_file='model.png')
 

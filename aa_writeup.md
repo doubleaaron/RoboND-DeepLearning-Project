@@ -222,14 +222,18 @@ The final score of my model was 0.424, and the final IoU without the target was 
 [image_15]: ./images/evaluation.jpg
 ![alt text][image_15]
 
+The student is able to clearly articulate whether this model and data would work well for following another object (dog, cat, car, etc.) instead of a human and if not, what changes would be required.
+
+This Model could be used as a framework for following other shapes such as cats, dogs, vehicles, etc. but that would require a large dataset of labeled images specific to other shapes to provide the model with sufficient training and validation information. I like to think of the Model as a feature extraction and segmentation engine that requires enough really good data to be useful. Garbage in = Garbage out.
+
 ### Future Enhancements ###
 
-A few methods could be utilized to improve the final score:
+A few methods could be utilized to improve the final score in my Model:
 
 1. Increase the resolution of the images: Increasing the resolution of the images would help especially in cases where the target is far away. This would significantly increase the training time and performance so it may not be ideal for using in a real time situation like a drone where the compute power per watt is an issue.
 
 2. Increase the number of images in the dataset: Increasing the number of images in the dataset would likely help, but there could be a tradeoff between under and overfitting. This would need to be tested by taking more images from the drone for training and validation.
 
-3. Increase the batch size in the hyperparameters for each single pass: I didn't have enough memory to increase the Batch Size per pass, but it would probably help in accuracy up to a point. This would also need to be tested on a machine with more power.
+3. Increase the batch size in the hyperparameters for each single pass: I didn't have enough memory to increase the Batch Size per pass, but it would probably help in accuracy up to a point. This would also need to be tested on a machine with more power in the future.
 
-Additional enhancements: For this example, the model was trained on humans but it could be repurposed to recognize things like vehicles or animals. It wouldn't work very well if you just fed it new images, the model would need to be trained and validated on images from the ground up with a large, good dataset such as CIFAR-10.
+I will revisit this Project in the future with better hardware and see how much I can improve the score.

@@ -23,7 +23,7 @@ Image Credit: http://cvlab.postech.ac.kr/research/deconvnet/
 
 
 
-#### Encoder ####
+#### Encoder | Decoder | 1x1 Convolutional Layer | Skip Connection ####
 Convnets learn from local 2D windows of information to get small patterns on the inputs. These patterns are translation independent. Once it learns a pattern it can recognize it anywhere. They can also learn spatial hierarchies of patterns as well. One layer can learn edges, the next can learn larger patterns built from the first layer and so on. In this way convnets can increasingly learn more complex visual concepts. They operate over 3D Tensors which are called feature maps with height, width and depth (HxWxD). Depth is also called a Channel Axis. For RGB images the Depth channel is 3 for Red, Green and Blue.
 
 A convolution works by sliding a window of size 3x3, 5x5, etc. over the 3D feature map, stopping at each location and extracting features (HxWxD). Each window is transformed via a tensor into a 1D vector of shape(output_depth).
@@ -43,6 +43,11 @@ A convolution works by sliding a window of size 3x3, 5x5, etc. over the 3D featu
  * 1x1 Convolution layer (Channels = 256)
  * 3 Decoder layers (Channels = 128,64,32)
  * Output layer (Channels = 3 (Target, Human, Background))
+
+Below is the keras model from plot_model(model, to_file='model.png')
+
+[image_16]: ./images/model.png
+![alt text][image_16]
 
 
 #### Training ####

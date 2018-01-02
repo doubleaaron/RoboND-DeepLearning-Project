@@ -17,18 +17,18 @@ Below is a video of how the final target tracking runs in the QuadSim simulator.
 The model has to be able to segment out objects within a live video stream which means that every pixel in the still frame image needs to have a label. Semantic Segmentation is a technique used with a Fully Convolutional Network to achieve this result. At the end of the process every pixel will be colored in one of the segmentation colors.
 
 
-[image_17]: ./images/cnn_architecture.jpg
-![alt text][image_17]
-
 #### Convolutional Neural Network ####
 Connvolutional Neural Networks (CNN) are widely used and perform very well in imaging applications due to the way that they mimic the human visual perception system and the visual cortex. Local regions of information are extracted from imagery by stacking feature extraction layers which detect higher and higher level information from an image. Edges, curves, shapes, etc. Traditional CNNs perform very well for Image Classification but due to the Fully Connected Layers placed at the end of the network aren't very good at positional information of the objects detected in the images. Spatial information required to locate objects is removed.
 
+[image_17]: ./images/cnn_architecture.jpg
+![alt text][image_17]
+
+
+#### Fully Convolutional Network ####
 
 [image_5]: ./images/FCN.png
 ![alt text][image_5]
 Image Credit: http://cvlab.postech.ac.kr/research/deconvnet/
-
-#### Fully Convolutional Network ####
 
 **1x1 convolutional layers:**
 
@@ -38,13 +38,25 @@ A disadvantage of 1x1 layers is that they can be computationally slower than Ful
 
 **Encoding**
 
+Like typical CNNs reducing the height and width with each added convolution layer with a stride larger than 1 extracts higher and higher level information from an image while the depth of the output is also increased so we don't lose information. This is where the 1x1 convolutional layers retain some spatial information that we can use in predictions.
 
+In order to classify pixels of images, we decode the eoncoded information using decoder blocks. Within the decoder blocks, we restore the spatial size using Bilinear Upsampling. We also use Skip Connections with lower level information from prior layers that improves accuracy. Convolution layers in the decoder blocks can also extract information from prior layers.
 
-**Decoder:** The decoding process is a transposed encoding process (or deconvolution) with an upsampling process. This is also called a fractionally strided convolution. This operation goes in the opposite direction to a convolution and translates the activations into meaningful information that scales up the activation to the same image size. This results in a pixel by pixel segmentation of the original input image.
+**Decoding**
 
-**1x1 convolutional layers:** This technique within the FCN allows the network to multiply the sums of the encoder convolution and contain it's spatial information.
+The decoding process is a transposed encoding process (or deconvolution) with an upsampling process. This is also called a fractionally strided convolution. This operation goes in the opposite direction to a convolution and translates the activations into meaningful information that scales up the activation to the same image size. This results in a pixel by pixel segmentation of the original input image.
 
-**Skip Connection:** This works via a connection in one layer of the encoder to another layer of the decoder, which allows the decoder to use information from multiple resolutions.
+**Bilinear Upsampling**
+
+Bilinear Upsampling allows us to predict pixel image probability from spatial information. Less training is required compared to transpose convolutions because Bilinear Upsampling is a linear interpolation of values.
+
+**Skip Connection**
+
+Skip Connections are a powerful tool in our arsenal that combines the high-level and low-level information to make spatial predictions more accurate. Prior layers with the same height and width are Concatenated and a Convolution is performed.
+
+**Batch Normalization**
+
+The input batch of each layer is optimized by normalization using the provided functions **separable_conv2d_batchnorm** as a separable dimensional convolution with ReLU activation and **conv2d_batchnorm** as a normal 2d convolution with ReLU activation. This allows convergence more quickly by helping Gradient Descent. The Depthwise Separable Convolution layers perform convolution on each of the input channels followed by a 1x1 convolution on the result. Reducing parameters improves performance and also reduces overfitting.
 
 **The network has the following layers:**
 

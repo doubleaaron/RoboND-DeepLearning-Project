@@ -8,13 +8,13 @@
 
 The Udacity Robotics Software Engineer Nanodegree :: Deep Learning Project is a Follow Me Quadcopter Drone Project. It utilizes a Fully Connected Convolutional Neural Network (FCN) in Tensorflow and Keras to build a model that identifies, targets and tracks a person from a Simulation Drone Camera feed built in Unity3D. The simulated Drone must acquire and follow a target person while ignoring other people that are randomly spawned around the target person.
 
-A video of what the final Target tracking looks like with the model is below. It has an average IoU of 42%.
+Below is a video of how the final target tracking runs in the QuadSim simulator. It has an average IoU of 42%.
 
 [![Follow Me!](./images/youtube_screen.jpg)](https://www.youtube.com/watch?v=LM8i6oglozw)
 
 ### Architecture ###
 
-The model has to be able to segment out objects within a live video stream which means that every pixels in the still frame image needs to have a label. Semantic Segmentation is a technique used with a Fully Convolutional Network to achieve this result. At the end of the process every pixel will be colored in one of the segmentation colors.
+The model has to be able to segment out objects within a live video stream which means that every pixel in the still frame image needs to have a label. Semantic Segmentation is a technique used with a Fully Convolutional Network to achieve this result. At the end of the process every pixel will be colored in one of the segmentation colors.
 
 
 [image_5]: ./images/FCN.png
@@ -109,3 +109,14 @@ The final score of my model was 0.424, and the final IoU without the target was 
 [image_15]: ./images/evaluation.jpg
 ![alt text][image_15]
 
+### Future Enhancements ###
+
+A few methods could be utilized to improve the final score:
+
+1. Increase the resolution of the images: Increasing the resolution of the images would help especially in cases where the target is far away. This would significantly increase the training time and performance so it may not be ideal for using in a real time situation like a drone where the compute power per watt is an issue.
+
+2. Increase the number of images in the dataset: Increasing the number of images in the dataset would likely help, but there could be a tradeoff between under and overfitting. This would need to be tested by taking more images from the drone for training and validation.
+
+3. Increase the batch size in the hyperparameters for each single pass: I didn't have enough memory to increase the Batch Size per pass, but it would probably help in accuracy up to a point. This would also need to be tested on a machine with more power.
+
+Additional enhancements: For this example, the model was trained on humans but it could be repurposed to recognize things like vehicles or animals. It wouldn't work very well if you just fed it new images, the model would need to be trained and validated on images from the ground up with a large, good dataset such as CIFAR-10.

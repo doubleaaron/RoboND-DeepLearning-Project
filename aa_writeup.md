@@ -18,10 +18,12 @@ The model has to be able to segment out objects within a live video stream which
 
 
 #### Convolutional Neural Network ####
+
 Connvolutional Neural Networks (CNN) are widely used and perform very well in imaging applications due to the way that they mimic the human visual perception system and the visual cortex. Local regions of information are extracted from imagery by stacking feature extraction layers which detect higher and higher level information from an image. Edges, curves, shapes, etc. Traditional CNNs perform very well for Image Classification but due to the Fully Connected Layers placed at the end of the network aren't very good at positional information of the objects detected in the images. Spatial information required to locate objects is removed.
 
 [image_17]: ./images/cnn_architecture.jpg
 ![alt text][image_17]
+
 
 
 #### Fully Convolutional Network ####
@@ -29,6 +31,8 @@ Connvolutional Neural Networks (CNN) are widely used and perform very well in im
 [image_5]: ./images/FCN.png
 ![alt text][image_5]
 Image Credit: http://cvlab.postech.ac.kr/research/deconvnet/
+
+
 
 **1x1 convolutional layers:**
 
